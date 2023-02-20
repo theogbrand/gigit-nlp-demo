@@ -107,15 +107,15 @@ class _MySelectableTextState extends State<MySelectableText> {
     }));
   }
 
-  void _handleHighlightButtonClick() {
+  void _handleHighlightButtonClick(String color) {
     if (_selectedTextRange != null) {
       setState(() {
-        _addSelectionBox();
+        _addSelectionBox(color);
       });
     }
   }
 
-  void _addSelectionBox() {
+  void _addSelectionBox(String colorName) {
     final int startOffset = _selectedTextRange!.start;
     final int endOffset = _selectedTextRange!.end;
 
@@ -129,8 +129,22 @@ class _MySelectableTextState extends State<MySelectableText> {
         return textSpan;
       }
 
+      Color boxColor = Colors.white;
+
+      switch(colorName) {
+        case 'purple':
+          boxColor = Colors.purple;
+          break;
+        case 'deepOrange':
+          boxColor = Colors.deepOrange;
+          break;
+        case 'green':
+          boxColor = Colors.green;
+          break;
+      }
+
       final BoxDecoration selectionDecoration = BoxDecoration(
-        color: Colors.deepOrange,
+        color: boxColor,
         borderRadius: BorderRadius.circular(5.0),
       );
 
@@ -204,7 +218,7 @@ class _MySelectableTextState extends State<MySelectableText> {
           ),
         ),
         ElevatedButton(
-          onPressed: _handleHighlightButtonClick,
+          onPressed: () => _handleHighlightButtonClick('deepOrange'),
           child: Text('President Joko'),
           style: ButtonStyle(
             backgroundColor:
@@ -213,7 +227,7 @@ class _MySelectableTextState extends State<MySelectableText> {
           ),
         ),
         ElevatedButton(
-          onPressed: _handleHighlightButtonClick,
+          onPressed: () => _handleHighlightButtonClick('purple'),
           child: Text('PM Lee'),
           style: ButtonStyle(
             backgroundColor:
@@ -222,7 +236,7 @@ class _MySelectableTextState extends State<MySelectableText> {
           ),
         ),
         ElevatedButton(
-          onPressed: _handleHighlightButtonClick,
+          onPressed: () => _handleHighlightButtonClick('green'),
           child: Text('Country'),
           style: ButtonStyle(
             backgroundColor:
