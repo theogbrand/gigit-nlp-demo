@@ -16,35 +16,42 @@ class _LabelableTextState extends State<LabelableText> {
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
-      widget.text,
-      showCursor: true,
-      cursorWidth: 5,
-      cursorRadius: Radius.circular(5),
-      toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 30,
-      ),
-      onTap: () {
-        _showLabelDialog();
-      },
-      onSelectionChanged: (selection, cause) => _onSelectionChanged(
-        selection,
-        cause!,
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SelectableText(
+            widget.text,
+            showCursor: true,
+            cursorWidth: 5,
+            cursorRadius: Radius.circular(5),
+            toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 30,
+            ),
+            onTap: () {
+              _showLabelDialog();
+            },
+            onSelectionChanged: (selection, cause) => _onSelectionChanged(
+              selection,
+              cause!,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   void _onSelectionChanged(
       TextSelection selection, SelectionChangedCause cause) {
-    if (cause != SelectionChangedCause.longPress) {
+    if (cause == SelectionChangedCause.tap) {
       return;
     }
+    print("selection changed!");
     setState(() {
       _selection = selection;
     });
-    // _showLabelDialog();
   }
 
   void _showLabelDialog() async {
