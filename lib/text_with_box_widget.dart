@@ -174,26 +174,60 @@ class _MySelectableTextState extends State<MySelectableText> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      // crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SelectableText.rich(TextSpan(children: _textSpans),
-            showCursor: true,
-            cursorWidth: 5,
-            cursorRadius: Radius.circular(5),
-            toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
-            style: TextStyle(
-              fontSize: 30.0,
-              color: Colors.black,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SelectableText.rich(TextSpan(children: _textSpans),
+              showCursor: true,
+              cursorWidth: 5,
+              cursorRadius: Radius.circular(5),
+              toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
+              style: TextStyle(
+                fontSize: 30.0,
+                color: Colors.black,
+              ),
+              onSelectionChanged: ((selection, cause) => _handleSelectionChanged(
+                    selection,
+                    cause!,
+                  ))),
+        ),
+        SizedBox(
+          child: Container(
+            alignment: Alignment.topLeft,
+            padding: const EdgeInsets.all(10.0),
+            child: const Text(
+              'Group entities together',
+              textAlign: TextAlign.left,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
-            onSelectionChanged: ((selection, cause) => _handleSelectionChanged(
-                  selection,
-                  cause!,
-                ))),
+          ),
+        ),
         ElevatedButton(
           onPressed: _handleHighlightButtonClick,
-          child: Text('Highlight'),
+          child: Text('President Joko'),
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.deepOrange),
+                minimumSize: MaterialStateProperty.all<Size>(Size(0.4, 50)),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: _handleHighlightButtonClick,
+          child: Text('PM Lee'),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.purple),
+                minimumSize: MaterialStateProperty.all<Size>(Size(0.4, 50)),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: _handleHighlightButtonClick,
+          child: Text('Country'),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.green),
+                minimumSize: MaterialStateProperty.all<Size>(Size(0.4, 50)),
           ),
         ),
       ],

@@ -32,29 +32,21 @@ class MyApp extends StatelessWidget {
               // ),
               // LabelableText(text: labelText),
               MySelectableText(text: labelText),
-              SizedBox(
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  padding: const EdgeInsets.all(10.0),
-                  child: const Text(
-                    'Group entities together',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                  ),
-                ),
-              ),
-              SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(items[index]),
-                      );
-                    },
-                  )),
-              ObjectTileWidget(
-                  labelName: 'President Joko', onClick: () {}, onDelete: () {})
+              // SizedBox(
+              //     height: 200,
+              //     child: ListView.builder(
+              //       itemCount: items.length,
+              //       itemBuilder: (context, index) {
+              //         return ListTile(
+              //           title: Text(items[index]),
+              //         );
+              //       },
+              //     )),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ObjectTileWidget(
+                    labelName: 'President Joko', onClick: () {}, onDelete: () {}),
+              )
             ],
           )),
     );
