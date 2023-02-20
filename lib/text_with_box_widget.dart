@@ -29,7 +29,7 @@ class _MySelectableTextState extends State<MySelectableText> {
     final TextSpan defaultStyle = TextSpan(
       text: text,
       style: TextStyle(
-        fontSize: 16.0,
+        fontSize: 30.0,
         color: Colors.black,
       ),
     );
@@ -63,9 +63,9 @@ class _MySelectableTextState extends State<MySelectableText> {
     final int baseOffset = _textSelection.baseOffset;
     final int extentOffset = _textSelection.extentOffset;
     final TextStyle selectedStyle = TextStyle(
-      fontSize: 16.0,
+      fontSize: 30.0,
       color: Colors.white,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.deepOrange,
     );
 
     _textSpans = List.from(_textSpans.map((textSpan) {
@@ -130,7 +130,7 @@ class _MySelectableTextState extends State<MySelectableText> {
       }
 
       final BoxDecoration selectionDecoration = BoxDecoration(
-        color: Colors.blue,
+        color: Colors.deepOrange,
         borderRadius: BorderRadius.circular(5.0),
       );
 
@@ -154,7 +154,7 @@ class _MySelectableTextState extends State<MySelectableText> {
             child: Text(
               selectedText,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 30.0,
                 color: Colors.white,
               ),
             ),
@@ -176,24 +176,25 @@ class _MySelectableTextState extends State<MySelectableText> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SelectableText.rich(
-          TextSpan(children: _textSpans),
-          showCursor: true,
-          cursorWidth: 5,
-          cursorRadius: Radius.circular(5),
-          toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
-          style: TextStyle(
-            fontSize: 30.0,
-            color: Colors.black,
-          ),
-          onSelectionChanged: ((selection, cause) => _handleSelectionChanged(
-                selection,
-                cause!,
-              ))
-        ),
+        SelectableText.rich(TextSpan(children: _textSpans),
+            showCursor: true,
+            cursorWidth: 5,
+            cursorRadius: Radius.circular(5),
+            toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
+            style: TextStyle(
+              fontSize: 30.0,
+              color: Colors.black,
+            ),
+            onSelectionChanged: ((selection, cause) => _handleSelectionChanged(
+                  selection,
+                  cause!,
+                ))),
         ElevatedButton(
           onPressed: _handleHighlightButtonClick,
           child: Text('Highlight'),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+          ),
         ),
       ],
     );
