@@ -1,6 +1,7 @@
 import 'package:flulearn/object_tile_widget.dart';
 import 'package:flulearn/object_label_widget.dart';
 import 'package:flulearn/label_text_widget.dart';
+import 'package:flulearn/text_with_box_widget.dart';
 import 'package:flutter/material.dart';
 // import 'dart:developer';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
               //       labelText,
               //       style: TextStyle(fontSize: 30)),
               // ),
-              LabelableText(text: labelText),
+              // LabelableText(text: labelText),
+              MySelectableText(text: labelText),
               SizedBox(
                 child: Container(
                   alignment: Alignment.topLeft,
